@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#3B2316" />
+  <title>Ciabatta Pizza · Pizza artesanal de horno de leña</title>
+  <meta name="description" content="Ciabatta Pizza: pizza artesanal horneada en leña, masa de fermentación lenta e ingredientes frescos. Y lasaña todos los viernes. Te esperamos." />
+
+  <!-- TODO: reemplazar https://ciabattapizza.co por el dominio real de producción -->
+  <link rel="canonical" href="https://ciabattapizza.co/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="restaurant" />
+  <meta property="og:site_name" content="Ciabatta Pizza" />
+  <meta property="og:url" content="https://ciabattapizza.co/" />
+  <meta property="og:title" content="Ciabatta Pizza · Pizza artesanal de horno de leña" />
+  <meta property="og:description" content="Pizza artesanal de horno de leña, masa de fermentación lenta y lasaña los viernes." />
+  <meta property="og:image" content="https://ciabattapizza.co/assets/img/hero-poster.jpg" />
+  <meta property="og:image:width" content="608" />
+  <meta property="og:image:height" content="1080" />
+  <meta property="og:image:alt" content="Pizza artesanal de horno de leña de Ciabatta Pizza" />
+  <meta property="og:locale" content="es_CO" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ciabatta Pizza · Pizza artesanal de horno de leña" />
+  <meta name="twitter:description" content="Pizza artesanal de horno de leña, masa de fermentación lenta y lasaña los viernes." />
+  <meta name="twitter:image" content="https://ciabattapizza.co/assets/img/hero-poster.jpg" />
+
+  <!-- Datos estructurados (SEO local) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Ciabatta Pizza",
+    "description": "Pizza artesanal horneada en leña, masa de fermentación lenta e ingredientes frescos. Lasaña todos los viernes.",
+    "servesCuisine": ["Pizza", "Italiana"],
+    "priceRange": "$$",
+    "image": "https://ciabattapizza.co/assets/img/hero-poster.jpg",
+    "url": "https://ciabattapizza.co/",
+    "logo": "https://ciabattapizza.co/assets/img/logo-256.png",
+    "telephone": "+573000000000",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "TODO: dirección real del local",
+      "addressLocality": "TODO: ciudad",
+      "addressCountry": "CO"
+    },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday"], "opens": "12:00", "closes": "22:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday","Saturday"], "opens": "12:00", "closes": "23:59" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "12:00", "closes": "21:00" }
+    ],
+    "menu": "https://ciabattapizza.co/#menu"
+  }
+  </script>
+
+  <!-- Fonts (carga no bloqueante) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" media="print" onload="this.media='all'"
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Caveat:wght@500;600;700&display=swap" />
+  <noscript>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Caveat:wght@500;600;700&display=swap" />
+  </noscript>
+
+  <link rel="preload" as="image" href="assets/img/hero-poster.webp" type="image/webp" />
+  <link rel="icon" type="image/png" href="assets/img/logo-256.png" />
+  <link rel="apple-touch-icon" href="assets/img/logo-256.png" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <!-- ─────────── NAV ─────────── -->
+  <header class="nav" id="nav">
+    <div class="nav__inner container">
+      <a class="brand" href="#inicio" aria-label="Ciabatta Pizza — inicio">
+        <img class="brand__logo" src="assets/img/logo-256.png" width="44" height="44" alt="" />
+        <span class="brand__text">
+          <span class="brand__name">Ciabatta</span>
+          <span class="brand__sub">Pizza · Horno de leña</span>
+        </span>
+      </a>
+
+      <nav class="nav__links" id="navLinks" aria-label="Navegación principal">
+        <a href="#favoritas">Favoritas</a>
+        <a href="#menu">Menú</a>
+        <a href="#viernes">Viernes de lasaña</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#galeria">Galería</a>
+        <a class="nav__cta" href="#pedir">Pedir ahora</a>
+      </nav>
+
+      <button class="nav__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="contenido">
+
+    <!-- ─────────── HERO ─────────── -->
+    <section class="hero" id="inicio">
+      <div class="hero__media">
+        <video class="hero__video" muted loop playsinline preload="none"
+               poster="assets/img/hero-poster.jpg" aria-hidden="true"
+               data-src="assets/video/hero.mp4"></video>
+        <div class="hero__scrim"></div>
+      </div>
+
+      <div class="hero__content container">
+        <p class="eyebrow eyebrow--light" data-reveal>
+          <span class="eyebrow__line"></span> Horno de leña · Masa de fermentación lenta
+        </p>
+        <h1 class="hero__title" data-reveal data-reveal-delay="1">
+          La masa que se<br /><span class="accent-script">hace con calma</span>
+        </h1>
+        <p class="hero__lead" data-reveal data-reveal-delay="2">
+          Pizza artesanal horneada en leña, con el leopardeado que solo da el fuego real
+          e ingredientes que escogemos cada mañana.
+        </p>
+        <div class="hero__actions" data-reveal data-reveal-delay="3">
+          <a class="btn btn--primary" href="#pedir">Pedir una pizza</a>
+          <a class="btn btn--ghost" href="#menu">Ver el menú</a>
+        </div>
+
+        <ul class="hero__badges" data-reveal data-reveal-delay="4">
+          <li><strong>450°C</strong><span>de horno</span></li>
+          <li><strong>48h</strong><span>de fermentación</span></li>
+          <li><strong>4.8★</strong><span>en Google</span></li>
+        </ul>
+      </div>
+
+      <a class="hero__scroll" href="#favoritas" aria-label="Bajar">
+        <span class="hero__scroll-dot"></span>
+        <span class="hero__scroll-text">Desliza</span>
+      </a>
+    </section>
+
+    <!-- ─────────── TICKER ─────────── -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__track">
+        <span>🔥 Horno de leña a 450°C</span><span>·</span>
+        <span>🌿 Ingredientes frescos cada día</span><span>·</span>
+        <span>⏱️ Masa fermentada 48 horas</span><span>·</span>
+        <span>🍕 Masa madre artesanal</span><span>·</span>
+        <span>🧀 Mozzarella fundida</span><span>·</span>
+        <span>📅 Lasaña todos los viernes</span><span>·</span>
+        <span>🔥 Horno de leña a 450°C</span><span>·</span>
+        <span>🌿 Ingredientes frescos cada día</span><span>·</span>
+        <span>⏱️ Masa fermentada 48 horas</span><span>·</span>
+        <span>🍕 Masa madre artesanal</span><span>·</span>
+        <span>🧀 Mozzarella fundida</span><span>·</span>
+        <span>📅 Lasaña todos los viernes</span><span>·</span>
+      </div>
+    </div>
+
+    <!-- ─────────── FAVORITAS ─────────── -->
+    <section class="section favoritas" id="favoritas">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <p class="eyebrow"><span class="eyebrow__line"></span> Las que más piden</p>
+          <h2 class="section__title">Salidas directo del fuego</h2>
+          <p class="section__desc">Nuestras estrellas, fotografiadas tal cual salen del horno. Sin filtros, solo leña.</p>
+        </header>
+
+        <div class="fav-grid">
+          <article class="fav-card" data-reveal data-tilt>
+            <div class="fav-card__img">
+              <picture>
+                <source srcset="assets/img/hero-poster.webp" type="image/webp" />
+                <img src="assets/img/hero-poster.jpg" loading="lazy" width="600" height="800" alt="Pizza de pepperoni saliendo del horno de leña con humo" />
+              </picture>
+              <span class="fav-card__tag tag--fire">Más vendida</span>
+            </div>
+            <div class="fav-card__body">
+              <h3>Pepperoni al fuego</h3>
+              <p>Doble pepperoni artesanal, mozzarella fundida y un toque de orégano fresco.</p>
+              <div class="fav-card__foot"><span class="price">$36.000</span></div>
+            </div>
+          </article>
+
+          <article class="fav-card" data-reveal data-reveal-delay="1" data-tilt>
+            <div class="fav-card__img">
+              <picture>
+                <source srcset="assets/img/pizza-horno-poster.webp" type="image/webp" />
+                <img src="assets/img/pizza-horno-poster.jpg" loading="lazy" width="600" height="800" alt="Pizza de pollo y champiñones recién horneada" />
+              </picture>
+              <span class="fav-card__tag tag--basil">Especial de la casa</span>
+            </div>
+            <div class="fav-card__body">
+              <h3>Pollo y champiñones</h3>
+              <p>Pollo marinado, champiñones frescos, mozzarella y albahaca.</p>
+              <div class="fav-card__foot"><span class="price">$38.000</span></div>
+            </div>
+          </article>
+
+          <article class="fav-card" data-reveal data-reveal-delay="2" data-tilt>
+            <div class="fav-card__img">
+              <picture>
+                <source type="image/webp"
+                        srcset="assets/img/pizza-hawaiana-400.webp 400w, assets/img/pizza-hawaiana-700.webp 700w, assets/img/pizza-hawaiana-1080.webp 1080w"
+                        sizes="(max-width:600px) 90vw, 380px" />
+                <img src="assets/img/pizza-hawaiana-700.jpg" loading="lazy" width="600" height="800" alt="Pizza hawaiana con jamón y piña sobre mesa de madera" />
+              </picture>
+              <span class="fav-card__tag tag--gold">Favorita</span>
+            </div>
+            <div class="fav-card__body">
+              <h3>Hawaiana de la casa</h3>
+              <p>Jamón, piña caramelizada y mozzarella sobre masa de fermentación lenta.</p>
+              <div class="fav-card__foot"><span class="price">$35.000</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────── MENÚ ─────────── -->
+    <section class="section section--paper menu" id="menu">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <p class="eyebrow eyebrow--green"><span class="eyebrow__line"></span> Nuestro menú</p>
+          <h2 class="section__title">El menú de la casa</h2>
+          <p class="section__desc">Todas nuestras pizzas se hornean en leña sobre masa madre fermentada 48 horas.</p>
+        </header>
+
+        <div class="menu-grid" data-stagger>
+          <!-- precios placeholder (COP) — editar segun carta real -->
+          <article class="menu-item" data-reveal>
+            <div class="menu-item__top">
+              <h3>Margherita Clásica</h3>
+              <span class="menu-item__dots" aria-hidden="true"></span>
+              <span class="price">$32.000</span>
+            </div>
+            <p>Mozzarella fresca, albahaca y salsa de tomate San Marzano.</p>
+          </article>
+
+          <article class="menu-item" data-reveal>
+            <div class="menu-item__top">
+              <h3>Pepperoni al Fuego <span class="chip chip--fire">Top</span></h3>
+              <span class="menu-item__dots" aria-hidden="true"></span>
+              <span class="price">$36.000</span>
+            </div>
+            <p>Doble pepperoni artesanal, mozzarella fundida y orégano.</p>
+          </article>
+
+          <article class="menu-item" data-reveal>
+            <div class="menu-item__top">
+              <h3>Pollo y Champiñones <span class="chip chip--basil">Casa</span></h3>
+              <span class="menu-item__dots" aria-hidden="true"></span>
+              <span class="price">$38.000</span>
+            </div>
+            <p>Pollo marinado, champiñones frescos, mozzarella y albahaca.</p>
+          </article>
+
+          <article class="menu-item" data-reveal>
+            <div class="menu-item__top">
+              <h3>Hawaiana de la Casa</h3>
+              <span class="menu-item__dots" aria-hidden="true"></span>
+              <span class="price">$35.000</span>
+            </div>
+            <p>Jamón, piña caramelizada y mozzarella.</p>
+          </article>
+
+          <article class="menu-item" data-reveal>
+            <div class="menu-item__top">
+              <h3>Gorgonzola con Miel</h3>
+              <span class="menu-item__dots" aria-hidden="true"></span>
+              <span class="price">$40.000</span>
+            </div>
+            <p>Gorgonzola, mozzarella, nueces y un hilo de miel de abeja.</p>
+          </article>
+
+          <article class="menu-item" data-reveal>
+            <div class="menu-item__top">
+              <h3>Vegetariana del Huerto</h3>
+              <span class="menu-item__dots" aria-hidden="true"></span>
+              <span class="price">$35.000</span>
+            </div>
+            <p>Champiñones, pimentón, cebolla caramelizada y aceitunas.</p>
+          </article>
+
+          <article class="menu-item" data-reveal>
+            <div class="menu-item__top">
+              <h3>Diavola Picante <span class="chip chip--fire">Picante</span></h3>
+              <span class="menu-item__dots" aria-hidden="true"></span>
+              <span class="price">$38.000</span>
+            </div>
+            <p>Salami picante, jalapeños, mozzarella y aceite de chile.</p>
+          </article>
+
+          <article class="menu-item" data-reveal>
+            <div class="menu-item__top">
+              <h3>Quattro Formaggi</h3>
+              <span class="menu-item__dots" aria-hidden="true"></span>
+              <span class="price">$40.000</span>
+            </div>
+            <p>Mozzarella, gorgonzola, parmesano y fontina.</p>
+          </article>
+        </div>
+
+        <p class="menu-note" data-reveal>¿Antojo de algo distinto? Arma tu pizza con los ingredientes que prefieras.</p>
+      </div>
+    </section>
+
+    <!-- ─────────── VIERNES DE LASAÑA ─────────── -->
+    <section class="section viernes" id="viernes">
+      <div class="container viernes__grid">
+        <div class="viernes__media" data-reveal>
+          <picture>
+            <source srcset="assets/img/lasagna-viernes.webp" type="image/webp" />
+            <img src="assets/img/lasagna-viernes.jpg" loading="lazy" width="700" height="700" alt="Lasaña en sartén con queso gratinado, albahaca y pan ciabatta" />
+          </picture>
+          <span class="viernes__stamp">Solo<br />viernes</span>
+        </div>
+        <div class="viernes__text" data-reveal data-reveal-delay="1">
+          <p class="eyebrow eyebrow--light"><span class="eyebrow__line"></span> Tradición de fin de semana</p>
+          <h2 class="section__title section__title--light">Los viernes son de lasaña</h2>
+          <p>
+            Capas de pasta fresca, salsa boloñesa de cocción lenta y mozzarella gratinada al horno,
+            servida burbujeante en sartén y acompañada de nuestro pan ciabatta recién horneado.
+          </p>
+          <ul class="viernes__list">
+            <li>Boloñesa de cocción lenta</li>
+            <li>Gratinada en horno de leña</li>
+            <li>Con pan ciabatta de la casa</li>
+          </ul>
+          <a class="btn btn--primary" href="#pedir">Reservar mi lasaña</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────── NOSOTROS ─────────── -->
+    <section class="section section--dark nosotros" id="nosotros">
+      <div class="container nosotros__grid">
+        <div class="nosotros__text" data-reveal>
+          <p class="eyebrow eyebrow--light"><span class="eyebrow__line"></span> Nuestra historia</p>
+          <h2 class="section__title section__title--light">Pizza de verdad, hecha con calma</h2>
+          <p>
+            En Ciabatta Pizza creemos que una buena pizza no se apura. Por eso fermentamos la masa
+            durante 48 horas y la horneamos en leña hasta lograr ese leopardeado que cruje y se rinde
+            en cada mordida. Ingredientes frescos, fuego real y la convicción de que la mesa une.
+          </p>
+          <p class="nosotros__sign accent-script">— Te esperamos</p>
+
+          <div class="stats">
+            <div class="stat" data-reveal>
+              <span class="stat__num" data-count="48" data-suffix="h">0</span>
+              <span class="stat__label">Fermentación</span>
+            </div>
+            <div class="stat" data-reveal data-reveal-delay="1">
+              <span class="stat__num" data-count="450" data-suffix="°C">0</span>
+              <span class="stat__label">Horno de leña</span>
+            </div>
+            <div class="stat" data-reveal data-reveal-delay="2">
+              <span class="stat__num" data-count="4.8" data-suffix="★" data-decimals="1">0</span>
+              <span class="stat__label">En Google</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="nosotros__media" data-reveal data-reveal-delay="1">
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/img/pizzas-duo-400.webp 400w, assets/img/pizzas-duo-700.webp 700w, assets/img/pizzas-duo-1080.webp 1080w"
+                    sizes="(max-width:600px) 90vw, 520px" />
+            <img src="assets/img/pizzas-duo-700.jpg" loading="lazy" width="700" height="933" alt="Dos pizzas artesanales sobre mesa de madera en Ciabatta Pizza" />
+          </picture>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────── GALERÍA ─────────── -->
+    <section class="section section--paper galeria" id="galeria">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <p class="eyebrow eyebrow--green"><span class="eyebrow__line"></span> Galería</p>
+          <h2 class="section__title">El fuego en movimiento</h2>
+          <p class="section__desc">Un vistazo a lo que pasa frente al horno todos los días.</p>
+        </header>
+
+        <div class="gallery-grid">
+          <figure class="gtile gtile--tall" data-reveal>
+            <video muted loop playsinline preload="none" poster="assets/img/pizza-horno-poster.jpg"
+                   data-lazy-video data-src="assets/video/pizza-horno.mp4"></video>
+            <figcaption>Pollo y champiñones al horno</figcaption>
+            <button class="gtile__play" aria-label="Reproducir video"></button>
+          </figure>
+
+          <figure class="gtile" data-reveal data-reveal-delay="1">
+            <video muted loop playsinline preload="none" poster="assets/img/promo-poster.jpg"
+                   data-lazy-video data-src="assets/video/promo.mp4"></video>
+            <figcaption>Recién salida</figcaption>
+            <button class="gtile__play" aria-label="Reproducir video"></button>
+          </figure>
+
+          <figure class="gtile" data-reveal data-reveal-delay="2">
+            <picture>
+              <source srcset="assets/img/lasagna-detalle.webp" type="image/webp" />
+              <img src="assets/img/lasagna-detalle.jpg" loading="lazy" width="540" height="540" alt="Detalle de lasaña gratinada" />
+            </picture>
+            <figcaption>Lasaña de los viernes</figcaption>
+          </figure>
+
+          <figure class="gtile gtile--tall" data-reveal>
+            <video muted loop playsinline preload="none" poster="assets/img/muestra-poster.jpg"
+                   data-lazy-video data-src="assets/video/muestra.mp4"></video>
+            <figcaption>Del horno a la mesa</figcaption>
+            <button class="gtile__play" aria-label="Reproducir video"></button>
+          </figure>
+
+          <figure class="gtile" data-reveal data-reveal-delay="1">
+            <picture>
+              <source srcset="assets/img/lasagna-pan.webp" type="image/webp" />
+              <img src="assets/img/lasagna-pan.jpg" loading="lazy" width="540" height="540" alt="Pan ciabatta de la lasaña" />
+            </picture>
+            <figcaption>Pan ciabatta de la casa</figcaption>
+          </figure>
+
+          <figure class="gtile gtile--tall" data-reveal data-reveal-delay="2">
+            <picture>
+              <source type="image/webp"
+                      srcset="assets/img/pizza-hawaiana-400.webp 400w, assets/img/pizza-hawaiana-700.webp 700w"
+                      sizes="(max-width:560px) 50vw, (max-width:980px) 50vw, 300px" />
+              <img src="assets/img/pizza-hawaiana-400.jpg" loading="lazy" width="540" height="960" alt="Pizza hawaiana en el salón de Ciabatta Pizza" />
+            </picture>
+            <figcaption>En nuestro salón</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────── RESEÑAS ─────────── -->
+    <section class="section resenas" id="resenas">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <p class="eyebrow eyebrow--green"><span class="eyebrow__line"></span> Lo que dicen</p>
+          <h2 class="section__title">Cada pizza cuenta una historia</h2>
+        </header>
+
+        <div class="resena-grid">
+          <blockquote class="resena" data-reveal data-tilt>
+            <div class="stars" aria-label="5 de 5 estrellas">★★★★★</div>
+            <p>La mejor pizza que hemos probado en la ciudad. El horno de leña hace toda la diferencia: cruje por fuera y es suave por dentro.</p>
+            <footer>— Carolina M.</footer>
+          </blockquote>
+          <blockquote class="resena" data-reveal data-reveal-delay="1" data-tilt>
+            <div class="stars" aria-label="5 de 5 estrellas">★★★★★</div>
+            <p>Fuimos un viernes por la lasaña y quedamos enamorados. Porciones generosas y un ambiente súper cálido. Volveremos seguro.</p>
+            <footer>— Andrés R.</footer>
+          </blockquote>
+          <blockquote class="resena" data-reveal data-reveal-delay="2" data-tilt>
+            <div class="stars" aria-label="5 de 5 estrellas">★★★★★</div>
+            <p>Lugar perfecto para ir en familia. La masa de fermentación lenta se nota muchísimo. Atención de diez.</p>
+            <footer>— Familia Gómez</footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────── CTA / PEDIR ─────────── -->
+    <section class="cta" id="pedir">
+      <div class="cta__bg" aria-hidden="true"></div>
+      <div class="container cta__inner" data-reveal>
+        <p class="eyebrow eyebrow--light eyebrow--center"><span class="eyebrow__line"></span> Te esperamos</p>
+        <h2>¿Listo para sentir el horno?</h2>
+        <p class="cta__lead">Pide a domicilio o reserva tu mesa y deja que el aroma de la leña te reciba.</p>
+        <div class="cta__actions">
+          <a class="btn btn--cream" href="https://wa.me/573000000000" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+          <a class="btn btn--ghost" href="tel:+573000000000">Llamar al local</a>
+        </div>
+        <p class="cta__note">Lun–Jue 12:00–22:00 · Vie–Sáb 12:00–00:00 · Dom 12:00–21:00</p>
+      </div>
+    </section>
+
+    <!-- ─────────── FOOTER ─────────── -->
+    <footer class="footer">
+      <div class="container footer__grid">
+        <div class="footer__brand">
+          <div class="brand">
+            <img class="brand__logo" src="assets/img/logo-256.png" width="48" height="48" alt="" />
+            <span class="brand__text">
+              <span class="brand__name">Ciabatta</span>
+              <span class="brand__sub">Pizza · Horno de leña</span>
+            </span>
+          </div>
+          <p>Donde cada pizza se hace con calma y se hornea con tradición.</p>
+          <!-- TODO: reemplazar por las URLs reales de los perfiles -->
+          <div class="footer__social">
+            <a href="https://instagram.com/ciabattapizza" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://facebook.com/ciabattapizza" target="_blank" rel="noopener">Facebook</a>
+            <a href="https://wa.me/573000000000" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="footer__col">
+          <h2 class="footer__title">Horario</h2>
+          <p>Lun – Jue: 12:00 – 22:00<br />Vie – Sáb: 12:00 – 00:00<br />Domingo: 12:00 – 21:00</p>
+        </div>
+
+        <div class="footer__col">
+          <h2 class="footer__title">Contacto</h2>
+          <!-- TODO: reemplazar por datos reales del local -->
+          <p>
+            📍 Tu dirección, Ciudad<br />
+            📞 <a href="tel:+573000000000">(+57) 300 000 0000</a><br />
+            ✉️ <a href="mailto:hola@ciabattapizza.co">hola@ciabattapizza.co</a>
+          </p>
+        </div>
+      </div>
+      <div class="footer__bottom container">
+        © <span id="year">2026</span> Ciabatta Pizza · Hecho con masa madre y mucho cariño
+      </div>
+    </footer>
+
+  </main>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
