@@ -92,23 +92,69 @@ de cada hallazgo (62 agentes). Resultado: **47 hallazgos confirmados** y corregi
 
 ---
 
-## 4. Pendiente para el cliente (placeholders a reemplazar)
+## 4. Datos del negocio
 
-- [ ] **Datos de contacto reales**: dirección, teléfono, email (marcados con `TODO` en el footer y JSON-LD).
-- [ ] **Número de WhatsApp** real (actualmente `573000000000`).
-- [ ] **URLs de redes sociales** (Instagram/Facebook).
-- [ ] **Dominio de producción** en `canonical`, Open Graph y JSON-LD (`ciabattapizza.co` es placeholder).
-- [ ] **Precios y carta** definitivos (los actuales son referencia).
+### ✅ Confirmados y aplicados (actualizado 2026-06-27)
+
+- [x] **Dirección**: Cl. 16 #1C-120, **Restrepo, Meta** (no Villavicencio). Aplicada en footer y JSON-LD (`streetAddress` + `addressLocality`).
+- [x] **Horario real** (según Google): **Miércoles a Domingo 5:00–10:00 p. m.**; **Lunes y Martes cerrado**. Aplicado en CTA, footer y `openingHoursSpecification`.
+- [x] **WhatsApp / teléfono**: **+57 323 601 1700**. Botones de WhatsApp, `tel:` y footer.
+- [x] **Redes**: Instagram `@ciabattapizzeria` y Facebook `CiabattaPizzeria`. Aplicadas en footer y `sameAs`.
+- [x] **Mapa**: embed de Google Maps integrado en el footer + `geo`/`hasMap` en JSON-LD.
+
+### ⏳ Pendiente por confirmar con el cliente (consultar y poner luego)
+
+- [ ] **Teléfono fijo de "Llamar al local"**: por ahora se usa el mismo WhatsApp (+57 323 601 1700). Confirmar si tienen un fijo distinto.
+- [ ] **Correo electrónico de contacto**: por ahora **no tienen** → se omitió del sitio. Añadir si abren uno.
+- [ ] **Dominio de producción**: aún **no hay**. Esto es una landing para mostrar el negocio; se comprará dominio **tras cerrar el trato**. Mientras tanto `ciabattapizza.co` queda como placeholder en `canonical`, Open Graph, Twitter Card y JSON-LD (`url`, `logo`, `image`, `menu`).
+- [ ] **Carta y precios reales**: **no los tienen** y no están próximos. Los precios actuales (COP) son de ejemplo.
+- [ ] **Domicilios por plataforma** (Rappi, DiDi Food, etc.): **por confirmar**. Hoy el sitio solo ofrece pedido por WhatsApp.
+- [ ] **TikTok u otra red** además de IG/Facebook: **por confirmar**.
 - [ ] *(Opcional)* `aggregateRating` en el JSON-LD solo con un número de reseñas real y verificable.
 
 ---
 
-## 5. Cómo ver el sitio
+## 5. Cómo ver el sitio (local)
 
-Abrir `index.html` directamente en el navegador, o servirlo localmente:
+Abrir `index.html` directo en el navegador, o servirlo localmente:
 
 ```bash
-# Python
-python -m http.server 8000
-# luego abrir http://localhost:8000
+# Opción A — Python
+python -m http.server 8000        # http://localhost:8000
+
+# Opción B — Node (igual que producción)
+npm install
+npm start                          # usa $PORT (3000 por defecto)
 ```
+
+---
+
+## 6. Despliegue en Railway
+
+Sitio estático servido con Node + `serve` (soporta *range requests* → video OK en Safari).
+Archivos de deploy añadidos:
+
+- `package.json` — dependencia `serve` y script `start` (`serve .`, escucha en `$PORT`).
+- `railway.json` — builder **Nixpacks** + `startCommand: npm run start` + reinicio `ON_FAILURE`.
+- `.gitignore` — excluye `node_modules/`.
+
+**Pasos (desde GitHub):**
+1. Subir el repo a GitHub: `git add -A && git commit -m "Preparar deploy" && git push`.
+2. Railway → **New Project → Deploy from GitHub repo** → elegir este repo.
+3. Railway detecta Node por `package.json`, instala dependencias y ejecuta `npm start`.
+   No hay variables de entorno obligatorias (Railway inyecta `PORT`).
+4. **Settings → Networking → Generate Domain** para la URL pública.
+
+**Alternativa (Railway CLI):**
+```bash
+npm i -g @railway/cli
+railway login
+railway init
+railway up
+```
+
+> Notas:
+> - `serve` publica TODA la carpeta. Si no quieres exponer archivos internos
+>   (`PLAN.md`, `pizzeria-mockup.jsx`, `Contenido/`), bórralos antes de desplegar.
+> - Al comprar el dominio real, reemplazar el placeholder `ciabattapizza.co` en
+>   `canonical`, Open Graph y JSON-LD.

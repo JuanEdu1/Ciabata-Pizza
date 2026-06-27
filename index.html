@@ -40,17 +40,22 @@
     "image": "https://ciabattapizza.co/assets/img/hero-poster.jpg",
     "url": "https://ciabattapizza.co/",
     "logo": "https://ciabattapizza.co/assets/img/logo-256.png",
-    "telephone": "+573000000000",
+    "telephone": "+573236011700",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "TODO: dirección real del local",
-      "addressLocality": "TODO: ciudad",
+      "streetAddress": "Cl. 16 #1C-120",
+      "addressLocality": "Restrepo",
+      "addressRegion": "Meta",
       "addressCountry": "CO"
     },
+    "geo": { "@type": "GeoCoordinates", "latitude": 4.263645, "longitude": -73.563122 },
+    "hasMap": "https://www.google.com/maps/search/?api=1&query=4.263645,-73.563122",
+    "sameAs": [
+      "https://www.instagram.com/ciabattapizzeria/",
+      "https://www.facebook.com/CiabattaPizzeria/"
+    ],
     "openingHoursSpecification": [
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday"], "opens": "12:00", "closes": "22:00" },
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday","Saturday"], "opens": "12:00", "closes": "23:59" },
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "12:00", "closes": "21:00" }
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "17:00", "closes": "22:00" }
     ],
     "menu": "https://ciabattapizza.co/#menu"
   }
@@ -105,59 +110,70 @@
 
     <!-- ─────────── HERO ─────────── -->
     <section class="hero" id="inicio">
-      <div class="hero__media">
-        <video class="hero__video" muted loop playsinline preload="none"
-               poster="assets/img/hero-poster.jpg" aria-hidden="true"
-               data-src="assets/video/hero.mp4"></video>
-        <div class="hero__scrim"></div>
-      </div>
+      <!-- Fondo: full-bleed en móvil; en desktop queda como lienzo cálido tras el split -->
+      <div class="hero__bg" aria-hidden="true"></div>
+      <!-- Resplandor difuso tipo brasa (solo desktop) -->
+      <div class="hero__ember" aria-hidden="true"></div>
 
       <div class="hero__content container">
-        <p class="eyebrow eyebrow--light" data-reveal>
-          <span class="eyebrow__line"></span> Horno de leña · Masa de fermentación lenta
-        </p>
-        <h1 class="hero__title" data-reveal data-reveal-delay="1">
-          La masa que se<br /><span class="accent-script">hace con calma</span>
-        </h1>
-        <p class="hero__lead" data-reveal data-reveal-delay="2">
-          Pizza artesanal horneada en leña, con el leopardeado que solo da el fuego real
-          e ingredientes que escogemos cada mañana.
-        </p>
-        <div class="hero__actions" data-reveal data-reveal-delay="3">
-          <a class="btn btn--primary" href="#pedir">Pedir una pizza</a>
-          <a class="btn btn--ghost" href="#menu">Ver el menú</a>
+        <div class="hero__copy">
+          <p class="eyebrow eyebrow--light" data-reveal>
+            <span class="eyebrow__line"></span> Horno de leña · Masa de fermentación lenta
+          </p>
+          <h1 class="hero__title" data-reveal data-reveal-delay="1">
+            La masa que se<br /><span class="accent-script">hace con calma</span>
+          </h1>
+          <p class="hero__lead" data-reveal data-reveal-delay="2">
+            Pizza artesanal horneada en leña, con el leopardeado que solo da el fuego real
+            e ingredientes que escogemos cada mañana.
+          </p>
+          <div class="hero__actions" data-reveal data-reveal-delay="3">
+            <a class="btn btn--primary" href="#pedir">Pedir una pizza</a>
+            <a class="btn btn--ghost" href="#menu">Ver el menú</a>
+          </div>
+
+          <ul class="hero__badges" data-reveal data-reveal-delay="4">
+            <li><strong>450°C</strong><span>de horno</span></li>
+            <li><strong>48h</strong><span>de fermentación</span></li>
+            <li><strong>4.8★</strong><span>en Google</span></li>
+          </ul>
         </div>
 
-        <ul class="hero__badges" data-reveal data-reveal-delay="4">
-          <li><strong>450°C</strong><span>de horno</span></li>
-          <li><strong>48h</strong><span>de fermentación</span></li>
-          <li><strong>4.8★</strong><span>en Google</span></li>
-        </ul>
+        <!-- Tarjeta flotante con el video (retrato). En móvil colapsa y el video
+             se vuelve full-bleed de fondo vía CSS. -->
+        <div class="hero__media">
+          <div class="hero__card">
+            <video class="hero__video" muted loop playsinline preload="none"
+                   poster="assets/img/hero-poster.jpg" aria-hidden="true"
+                   data-src="assets/video/hero.mp4"></video>
+            <div class="hero__scrim"></div>
+            <span class="hero__chip" aria-hidden="true">
+              <span class="hero__chip-dot"></span> En vivo · horno de leña
+            </span>
+          </div>
+        </div>
       </div>
 
-      <a class="hero__scroll" href="#favoritas" aria-label="Bajar">
-        <span class="hero__scroll-dot"></span>
-        <span class="hero__scroll-text">Desliza</span>
-      </a>
+      <!-- Marquee en primer plano: banda inferior con scroll infinito -->
+      <div class="hero__ticker" aria-hidden="true">
+        <div class="ticker__track">
+          <span>🔥 Horno de leña a 450°C</span><span>·</span>
+          <span>🌿 Ingredientes frescos cada día</span><span>·</span>
+          <span>⏱️ Masa fermentada 48 horas</span><span>·</span>
+          <span>🍕 Masa madre artesanal</span><span>·</span>
+          <span>🧀 Mozzarella fundida</span><span>·</span>
+          <span>📅 Lasaña todos los viernes</span><span>·</span>
+          <span>🔥 Horno de leña a 450°C</span><span>·</span>
+          <span>🌿 Ingredientes frescos cada día</span><span>·</span>
+          <span>⏱️ Masa fermentada 48 horas</span><span>·</span>
+          <span>🍕 Masa madre artesanal</span><span>·</span>
+          <span>🧀 Mozzarella fundida</span><span>·</span>
+          <span>📅 Lasaña todos los viernes</span><span>·</span>
+        </div>
+      </div>
     </section>
 
-    <!-- ─────────── TICKER ─────────── -->
-    <div class="ticker" aria-hidden="true">
-      <div class="ticker__track">
-        <span>🔥 Horno de leña a 450°C</span><span>·</span>
-        <span>🌿 Ingredientes frescos cada día</span><span>·</span>
-        <span>⏱️ Masa fermentada 48 horas</span><span>·</span>
-        <span>🍕 Masa madre artesanal</span><span>·</span>
-        <span>🧀 Mozzarella fundida</span><span>·</span>
-        <span>📅 Lasaña todos los viernes</span><span>·</span>
-        <span>🔥 Horno de leña a 450°C</span><span>·</span>
-        <span>🌿 Ingredientes frescos cada día</span><span>·</span>
-        <span>⏱️ Masa fermentada 48 horas</span><span>·</span>
-        <span>🍕 Masa madre artesanal</span><span>·</span>
-        <span>🧀 Mozzarella fundida</span><span>·</span>
-        <span>📅 Lasaña todos los viernes</span><span>·</span>
-      </div>
-    </div>
+    <!-- (marquee movido al primer plano del hero) -->
 
     <!-- ─────────── FAVORITAS ─────────── -->
     <section class="section favoritas" id="favoritas">
@@ -470,10 +486,10 @@
         <h2>¿Listo para sentir el horno?</h2>
         <p class="cta__lead">Pide a domicilio o reserva tu mesa y deja que el aroma de la leña te reciba.</p>
         <div class="cta__actions">
-          <a class="btn btn--cream" href="https://wa.me/573000000000" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-          <a class="btn btn--ghost" href="tel:+573000000000">Llamar al local</a>
+          <a class="btn btn--cream" href="https://wa.me/573236011700" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+          <a class="btn btn--ghost" href="tel:+573236011700">Llamar al local</a>
         </div>
-        <p class="cta__note">Lun–Jue 12:00–22:00 · Vie–Sáb 12:00–00:00 · Dom 12:00–21:00</p>
+        <p class="cta__note">Miércoles a domingo · 5:00–10:00 p. m. · Lunes y martes cerrado</p>
       </div>
     </section>
 
@@ -489,29 +505,37 @@
             </span>
           </div>
           <p>Donde cada pizza se hace con calma y se hornea con tradición.</p>
-          <!-- TODO: reemplazar por las URLs reales de los perfiles -->
           <div class="footer__social">
-            <a href="https://instagram.com/ciabattapizza" target="_blank" rel="noopener">Instagram</a>
-            <a href="https://facebook.com/ciabattapizza" target="_blank" rel="noopener">Facebook</a>
-            <a href="https://wa.me/573000000000" target="_blank" rel="noopener">WhatsApp</a>
+            <a href="https://www.instagram.com/ciabattapizzeria/" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://www.facebook.com/CiabattaPizzeria/" target="_blank" rel="noopener">Facebook</a>
+            <a href="https://wa.me/573236011700" target="_blank" rel="noopener">WhatsApp</a>
           </div>
         </div>
 
         <div class="footer__col">
           <h2 class="footer__title">Horario</h2>
-          <p>Lun – Jue: 12:00 – 22:00<br />Vie – Sáb: 12:00 – 00:00<br />Domingo: 12:00 – 21:00</p>
+          <p>Miércoles – Domingo: 5:00 – 10:00 p. m.<br />Lunes y Martes: Cerrado</p>
         </div>
 
         <div class="footer__col">
           <h2 class="footer__title">Contacto</h2>
-          <!-- TODO: reemplazar por datos reales del local -->
           <p>
-            📍 Tu dirección, Ciudad<br />
-            📞 <a href="tel:+573000000000">(+57) 300 000 0000</a><br />
-            ✉️ <a href="mailto:hola@ciabattapizza.co">hola@ciabattapizza.co</a>
+            📍 Cl. 16 #1C-120, Restrepo, Meta<br />
+            📞 <a href="tel:+573236011700">(+57) 323 601 1700</a><br />
+            💬 <a href="https://wa.me/573236011700" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
           </p>
         </div>
       </div>
+
+      <div class="container">
+        <div class="footer__map">
+          <iframe
+            title="Ubicación de Ciabatta Pizza en Google Maps"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3721.1388388887676!2d-73.56312215535237!3d4.263645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3fd3815a792851%3A0xe2d78d7d86ae12df!2sCiabatta%20pizzas%20y%20m%C3%A1s!5e1!3m2!1ses!2sco!4v1782537898666!5m2!1ses!2sco"
+            allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+      </div>
+
       <div class="footer__bottom container">
         © <span id="year">2026</span> Ciabatta Pizza · Hecho con masa madre y mucho cariño
       </div>

@@ -165,45 +165,183 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .nav__toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
 .nav__toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* ── HERO ──────────────────────────────────────────────────── */
-.hero { position: relative; min-height: 100svh; display: flex; align-items: center; overflow: hidden; }
-.hero__media { position: absolute; inset: 0; z-index: 0; }
-.hero__video { width: 100%; height: 100%; object-fit: cover; }
-.hero__scrim {
-  position: absolute; inset: 0;
-  background:
-    linear-gradient(180deg, rgba(59,35,22,.55) 0%, rgba(59,35,22,.35) 40%, rgba(59,35,22,.85) 100%),
-    radial-gradient(120% 80% at 70% 30%, transparent 30%, rgba(59,35,22,.4) 100%);
+/* ── HERO ──────────────────────────────────────────────────────────────
+   · MÓVIL / vertical (base): el video va full-bleed DETRÁS, oscurecido con
+     scrim, y el texto POR ENCIMA (legible). Marquee como banda inferior.
+   · DESKTOP (min-width: 821px): split a pantalla completa — texto grande a la
+     izquierda + tarjeta retrato "EN VIVO" a la derecha. Marquee en banda
+     inferior de primer plano. Breakpoint 821px casa con el mqDesktop del JS.
+   ────────────────────────────────────────────────────────────────────── */
+.hero {
+  --hero-ticker-h: 52px;
+  position: relative; min-height: 100svh; display: flex; align-items: center;
+  overflow: hidden; background: var(--espresso);
+  padding-bottom: var(--hero-ticker-h);   /* reserva sitio a la banda inferior */
 }
-.hero__content { position: relative; z-index: 2; padding-top: var(--nav-h); max-width: 720px; }
+
+/* Lienzo de fondo. MÓVIL: poster oscurecido (el video full-bleed va encima).
+   DESKTOP: degradado cálido (ver media query). */
+.hero__bg {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(59,35,22,.35), rgba(59,35,22,.6)),
+    url('../assets/img/hero-poster.jpg') center / cover no-repeat;
+}
+.hero__ember {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: 0;
+  background:
+    radial-gradient(60% 55% at 72% 42%, rgba(181,67,42,.55) 0%, rgba(181,67,42,0) 60%),
+    radial-gradient(42% 40% at 78% 70%, rgba(196,137,59,.45) 0%, rgba(196,137,59,0) 65%);
+  transition: opacity .6s var(--ease);
+}
+
+/* El contenido NO crea contexto de posición en móvil → .hero__media (absolute)
+   se ancla al .hero y queda full-bleed. La copia se eleva por encima del video. */
+.hero__content {
+  position: static; width: 100%; max-width: var(--container);
+  margin-inline: auto; padding-top: var(--nav-h);
+}
+.hero__copy { position: relative; z-index: 2; max-width: 600px; }
+
+/* ── MÓVIL: video full-bleed detrás del texto ───────────────────────── */
+.hero__media { position: absolute; inset: 0; z-index: 1; }
+.hero__card {
+  position: absolute; inset: 0; border-radius: 0; box-shadow: none; overflow: hidden;
+  background: var(--espresso) url('../assets/img/hero-poster.jpg') center / cover no-repeat;
+}
+.hero__video { width: 100%; height: 100%; object-fit: cover; }
+/* Scrim fuerte en móvil → el texto se lee con claridad sobre el video */
+.hero__scrim {
+  position: absolute; inset: 0; z-index: 1;
+  background:
+    linear-gradient(180deg, rgba(59,35,22,.72) 0%, rgba(59,35,22,.5) 40%, rgba(59,35,22,.84) 100%),
+    radial-gradient(130% 90% at 28% 30%, rgba(59,35,22,.2), rgba(59,35,22,.6));
+}
+.hero__chip { display: none; }
+
 .eyebrow--light .eyebrow__line { background: var(--miel); }
 
+/* ── Tipografía del hero (base / móvil) ─────────────────────────────── */
 .hero__title {
   font-family: var(--font-display); font-weight: 800; color: var(--pergamino);
-  font-size: clamp(2.6rem, 1.4rem + 6vw, 5.2rem); line-height: 1.06;
-  letter-spacing: -.015em; margin-bottom: 22px; text-shadow: 0 2px 30px rgba(0,0,0,.4);
+  font-size: clamp(2.7rem, 1.5rem + 6vw, 4rem); line-height: 1.05;
+  letter-spacing: -.015em; margin-bottom: 20px; text-shadow: 0 2px 30px rgba(0,0,0,.45);
 }
 .hero__title .accent-script { display: inline-block; line-height: 1.1; padding-bottom: .04em; }
-.hero__lead { color: rgba(245,236,215,.9); font-size: clamp(1rem, .95rem + .5vw, 1.25rem); max-width: 520px; margin-bottom: 34px; }
+.hero__lead {
+  color: rgba(245,236,215,.92); font-size: clamp(1.02rem, .96rem + .5vw, 1.2rem);
+  line-height: 1.6; max-width: 460px; margin-bottom: 30px; text-shadow: 0 1px 12px rgba(0,0,0,.45);
+}
 .hero__actions { display: flex; gap: 14px; flex-wrap: wrap; }
 
-.hero__badges { display: flex; gap: clamp(20px, 4vw, 44px); margin-top: 48px; flex-wrap: wrap; }
+.hero__badges { display: flex; gap: clamp(22px, 5vw, 44px); margin-top: 40px; flex-wrap: wrap; }
 .hero__badges li { display: flex; flex-direction: column; color: var(--pergamino); }
-.hero__badges strong { font-family: var(--font-display); font-size: clamp(1.5rem, 1rem + 1.6vw, 2.1rem); color: var(--miel); line-height: 1; }
-.hero__badges span { font-size: .76rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(245,236,215,.7); margin-top: 4px; }
+.hero__badges strong {
+  font-family: var(--font-display); font-size: clamp(1.7rem, 1.1rem + 1.8vw, 2.3rem);
+  color: var(--miel); line-height: 1; text-shadow: 0 2px 16px rgba(0,0,0,.4);
+}
+.hero__badges span {
+  font-size: .76rem; letter-spacing: .14em; text-transform: uppercase;
+  color: rgba(245,236,215,.86); margin-top: 6px; text-shadow: 0 1px 10px rgba(0,0,0,.5);
+}
 
-.hero__scroll {
-  position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%);
-  z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 8px;
-  color: rgba(245,236,215,.8); font-size: .7rem; letter-spacing: .2em; text-transform: uppercase;
+/* ── Marquee del hero: primer plano, banda inferior con scroll infinito ── */
+.hero__ticker {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 4;
+  height: var(--hero-ticker-h); display: flex; align-items: center; overflow: hidden;
+  color: var(--pergamino);
+  background: rgba(43,33,24,.82) linear-gradient(180deg, rgba(43,33,24,.55), rgba(43,33,24,.9) 60%);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(212,164,76,.32);
+  box-shadow: 0 -8px 24px rgba(0,0,0,.22);
 }
-.hero__scroll-dot { width: 22px; height: 36px; border: 2px solid rgba(245,236,215,.6); border-radius: var(--radius-pill); position: relative; }
-.hero__scroll-dot::after {
-  content: ""; position: absolute; top: 7px; left: 50%; transform: translateX(-50%);
-  width: 4px; height: 7px; border-radius: 2px; background: var(--miel);
-  animation: scrollDot 1.6s var(--ease) infinite;
+.hero__ticker .ticker__track { color: var(--pergamino); }
+/* OJO: el track animado NO debe llevar padding/margen propio: rompería la
+   simetría del loop translateX(-50%) y haría saltar el marquee en cada vuelta. */
+
+@keyframes heroChipPulse { 0% { transform: scale(1); opacity: 1; } 70% { transform: scale(2.4); opacity: 0; } 100% { transform: scale(2.4); opacity: 0; } }
+
+/* ── DESKTOP (≥821px): split a pantalla completa + tarjeta flotante ──── */
+@media (min-width: 821px) {
+  .hero__bg {
+    background: linear-gradient(115deg, var(--espresso) 0%, var(--espresso) 42%, var(--nogal) 100%);
+  }
+  .hero__ember { opacity: 1; }
+
+  /* Composición amplia: usa más ancho en pantallas grandes, no comprimido. */
+  .hero__content {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(360px, .85fr);
+    align-items: center; gap: clamp(40px, 6vw, 96px);
+    max-width: min(1320px, 92vw);
+    padding-block: calc(var(--nav-h) + 8px) 12px;
+  }
+  .hero__copy { max-width: 620px; }
+  .eyebrow--light { margin-bottom: 18px; }
+
+  /* Tipografía grande, jerarquía clara */
+  .hero__title {
+    font-size: clamp(2.8rem, 1.4rem + 3.4vw, 4.6rem); line-height: 1.04;
+    margin-bottom: 22px; text-shadow: 0 2px 18px rgba(0,0,0,.25);
+  }
+  .hero__lead {
+    font-size: clamp(1.08rem, .98rem + .45vw, 1.32rem); line-height: 1.6;
+    max-width: 520px; margin-bottom: 34px; text-shadow: none;
+  }
+  .hero__actions { gap: 16px; }
+  .hero__actions .btn { padding: 17px 36px; font-size: 1.02rem; }
+  .hero__badges { margin-top: 44px; gap: clamp(28px, 3.2vw, 56px); }
+  .hero__badges strong { font-size: clamp(2rem, 1.3rem + 1.4vw, 2.8rem); text-shadow: none; }
+  .hero__badges span { font-size: .82rem; }
+
+  /* La media vuelve a flujo (columna derecha); tarjeta retrato. */
+  .hero__media { position: relative; inset: auto; z-index: 2; display: flex; justify-content: center; align-items: center; }
+  /* Altura mandada por el VIEWPORT (descontando nav + banda) → nunca desborda;
+     el ancho se deriva del alto para conservar la proporción retrato. */
+  .hero__card {
+    position: relative; inset: auto;
+    aspect-ratio: 3 / 5;
+    height: min(600px, calc(100svh - var(--nav-h) - var(--hero-ticker-h) - 52px));
+    width: auto; max-width: 100%;
+    border-radius: var(--radius-lg); overflow: hidden;
+    box-shadow: var(--shadow-2);
+    outline: 1px solid rgba(196,137,59,.35);
+    background: var(--espresso) url('../assets/img/hero-poster.jpg') center / cover no-repeat;
+  }
+  .hero__card::before {
+    content: ""; position: absolute; inset: -2px; z-index: 0; border-radius: inherit;
+    box-shadow: 0 0 0 1px rgba(212,164,76,.25), 0 0 60px 6px rgba(196,137,59,.18);
+    pointer-events: none;
+  }
+  .hero__video { position: relative; z-index: 1; }
+
+  /* En desktop el texto NO va sobre el video → scrim mínimo solo para el chip */
+  .hero__scrim { background: linear-gradient(180deg, transparent 62%, rgba(59,35,22,.45) 100%); }
+
+  /* Chip "EN VIVO" sobre la tarjeta */
+  .hero__chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    position: absolute; left: 16px; bottom: 16px; z-index: 3;
+    padding: 8px 14px; border-radius: var(--radius-pill);
+    background: rgba(59,35,22,.78); backdrop-filter: blur(6px);
+    border: 1px solid rgba(212,164,76,.4);
+    color: var(--pergamino); font-size: .72rem; font-weight: 600;
+    letter-spacing: .08em; text-transform: uppercase; box-shadow: var(--shadow-pop);
+  }
+  .hero__chip-dot { position: relative; width: 9px; height: 9px; border-radius: 50%; background: var(--ladrillo); flex: none; }
+  .hero__chip-dot::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--ladrillo); animation: heroChipPulse 1.8s var(--ease) infinite; }
+
+  .hero__ticker { height: var(--hero-ticker-h); }
+  .hero__ticker .ticker__track { font-size: .95rem; }
 }
-@keyframes scrollDot { 0% { opacity: 0; transform: translate(-50%, 0); } 40% { opacity: 1; } 80%,100% { opacity: 0; transform: translate(-50%, 14px); } }
+
+/* Laptops anchas pero BAJAS: compacta el hero para que nunca desborde */
+@media (min-width: 821px) and (max-height: 800px) {
+  .hero__title { font-size: clamp(2.2rem, 1rem + 2.4vw, 3.2rem); margin-bottom: 14px; }
+  .hero__lead { margin-bottom: 22px; }
+  .hero__badges { margin-top: 26px; }
+  .hero__card { height: min(500px, calc(100svh - var(--nav-h) - var(--hero-ticker-h) - 40px)); }
+}
 
 /* ── TICKER ────────────────────────────────────────────────── */
 .ticker { background: var(--espresso); color: var(--pergamino); overflow: hidden; padding: 14px 0; border-block: 1px solid rgba(245,236,215,.08); }
@@ -378,6 +516,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .footer__col .footer__title { color: var(--miel); font-family: var(--font-body); font-size: .8rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 14px; }
 .footer__col p { line-height: 1.9; }
 .footer__col a:hover { color: var(--miel); }
+.footer__map { margin-top: clamp(32px, 5vw, 52px); border-radius: var(--radius-lg, 18px); overflow: hidden; border: 1px solid rgba(245,236,215,.14); box-shadow: 0 18px 40px rgba(0,0,0,.35); line-height: 0; }
+.footer__map iframe { display: block; width: 100%; height: clamp(260px, 38vw, 380px); border: 0; }
 .footer__bottom { border-top: 1px solid rgba(245,236,215,.1); margin-top: 44px; padding-top: 22px; text-align: center; font-size: .82rem; }
 
 /* ============================================================
@@ -444,10 +584,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
   [data-reveal] { opacity: 1 !important; transform: none !important; }
   .ticker__track { animation: none; }
+  /* Sin video: queda el poster pintado en .hero__card (móvil full-bleed y
+     desktop dentro de la tarjeta). El chip deja de pulsar. */
   .hero__video { display: none; }
-  .hero__media {
-    background-color: var(--espresso);
-    background-image: url('../assets/img/hero-poster.jpg');
-    background-position: center; background-size: cover; background-repeat: no-repeat;
-  }
+  .hero__chip-dot::after { animation: none; }
 }
